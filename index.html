@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imgs/icons_332705.svg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>LOGIN</title>
+</head>
+
+<body>
+
+    <section class="mt-5" id="login">
+        <div class="container">
+
+            <div class="col-lg-8 col-12 p-5 mx-auto">
+                
+                <h1 class="form-title text-center mb-3">
+                    ..Login..
+                </h1>
+                <div class="login-form">
+                    <form action="" method="post">
+                        <div class="form-floating mb-4 position-relative">
+                            <input type="text" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                            <div class="alert name-alert alert-danger p-2 fs-6 d-none text-capitalize">
+                                your name is required and must be 3-20 characters long
+                            </div>
+                            <i
+                                class="fa-solid fa-lg end-0  text-danger position-absolute me-2 d-none fa-circle-exclamation"></i>
+                            <i class="fa-solid fa-lg end-0  text-success position-absolute me-2 d-none fa-check"></i>
+
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <div class="alert  alert-danger p-2 fs-6 d-none text-capitalize">
+                                your password is required and must start with capital letter and contain at least 8
+                                characters
+                            </div>
+                            <i
+                                class="fa-solid fa-lg end-0  text-danger position-absolute me-2 d-none fa-circle-exclamation"></i>
+                            <i class="fa-solid fa-lg end-0  text-success position-absolute me-2 d-none fa-check"></i>
+
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                      <div class="rem-input d-flex column-gap-2 mt-4 justify-content-end">
+                        <input id="remember" type="checkbox" class="form-check">
+                        <label for="remember" class="text-capitalize text-white">remember me</label>
+                      </div>
+                        <button class="btn btn-login btn-outline-light d-block w-100 mt-4 text-uppercase">login</button>
+                    </form>
+                </div>
+
+                <p class="text-center text-white mt-4">
+                    Don’t have an account? <a class="text-white text-decoration-none signup text-uppercase"
+                        href="./signup.html">Sign Up</a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/signin.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+body , .col-lg-8 , nav {
+    background-color: #24353F;
+}
+
+.form-title {
+    
+    color: #17A2B8;
+    /* font-family: 'segoe ui light'; */
+     font-family: "Ubuntu", sans-serif;
+    font-variant: small-caps;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 .25rem rgb(23, 162, 184,0.25);
+}
+.btn-login , .btn-signup{
+    color: #17A2B8 !important;
+    border-color: #17A2B8 !important;
+}
+.btn-login:hover , .btn-signup:hover {
+    background-color: #17A2B8 !important;
+    color: white !important;
+}
+.col-lg-8 {
+    box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+.form-floating>label {
+        padding: 0.8rem .75rem;
+}
+.form-floating>.form-control {
+    height: calc(3rem + calc(var(--bs-border-width)* 2));
+    min-height: calc(3rem + calc(var(--bs-border-width)* 2));
+    line-height: 1.25;
+}
+
+.signup:hover , .signin:hover {
+    text-decoration: underline !important;
+}
+
+h1.home , .brand a {
+         font-family: "Ubuntu", sans-serif;
+
+}
+
+.fa-check , .fa-circle-exclamation {
+    top: 25px !important;
+}
+
+
+#swal2-html-container {
+    padding: 0 !important;
+}
+
+.avatar {
+    width: 5rem !important;
+    height: 5rem !important;
+}
