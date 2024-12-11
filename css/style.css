@@ -1,5 +1,5 @@
-body , .col-lg-8 , nav {
-    background-color: #24353F;
+body {
+    background-color: #F2F4F7;
 }
 
 .form-title {
@@ -21,7 +21,8 @@ body , .col-lg-8 , nav {
     color: white !important;
 }
 .col-lg-8 {
-    box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1);
+    background-color: #fff !important;
 }
 
 .form-floating>label {
@@ -33,17 +34,25 @@ body , .col-lg-8 , nav {
     line-height: 1.25;
 }
 
-.signup:hover , .signin:hover {
+.signup:hover , .signin:hover , .changePass:hover {
     text-decoration: underline !important;
 }
 
-h1.home , .brand a {
+h1.home , .brand a , #exampleModalLabel {
          font-family: "Ubuntu", sans-serif;
 
 }
-
-.fa-check , .fa-circle-exclamation {
+.fa-check.last , .fa-circle-exclamation.last {
+    margin-right: 35px;
+}
+.fa-check , .fa-circle-exclamation , .fa-eye , .fa-eye-slash {
     top: 25px !important;
+}
+.modal-body i {
+    top: 20px !important;
+}
+.fa-eye , .fa-eye-slash {
+    cursor: pointer;
 }
 
 
@@ -51,7 +60,9 @@ h1.home , .brand a {
     padding: 0 !important;
 }
 
-.avatar {
-    width: 5rem !important;
-    height: 5rem !important;
+#signup {
+    width: 20px !important;
+    height: 20px !important;
 }
+
+

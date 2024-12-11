@@ -1,9 +1,11 @@
+if (localStorage.getItem("loggedInUser") == null) {
+    window.location.href = "./signin.html"
+}
 let homeWelcome = document.getElementById("home-welcome")
 let logOutBtn = document.querySelector(".logout-btn button")
+
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []
-if (localStorage.getItem("loggedInUser") == null) {
-    window.location.href = "./index.html"
-}
+
 
 let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
 
@@ -15,7 +17,7 @@ logOutBtn.addEventListener('click', function () {
 
 
 function logOut() {
-    localStorage.removeItem("loggedInEmail")
-    window.location.href = "./index.html"
+    localStorage.removeItem("loggedInUser")
+    window.location.href = "./signin.html"
 
 }

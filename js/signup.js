@@ -1,10 +1,11 @@
 let userName = document.getElementById("floatingName")
 let userEmail = document.getElementById('floatingEmail')
 let userPass = document.getElementById('floatingPassword')
-// let userRePass = document.getElementById('floatingCmfPassword')
 let registerInputs = document.querySelector(".signup-form")
 let allInputs = document.querySelectorAll(".signup-form input")
 let btnSignup = document.querySelector(".btn-signup")
+let showPass = document.querySelector(".fa-eye")
+let hidePass = document.querySelector(".fa-eye-slash")
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []
 
 let allRegx = [
@@ -155,5 +156,31 @@ btnSignup.addEventListener('click', function () {
 
 })
 
+showPass.addEventListener('click' , function(){
+        if (userPass.value) {
+
+            userPass.setAttribute("type" , "text")
+            hidePass.classList.remove("d-none")
+            showPass.classList.add("d-none")
+        }
+    
+
+        
+       
+
+    
+})
 
 
+hidePass.addEventListener('click', function () {
+
+    userPass.setAttribute("type", "password")
+    hidePass.classList.add("d-none")
+    showPass.classList.remove("d-none")
+   
+
+
+
+
+
+})
