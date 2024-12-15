@@ -1,186 +1,126 @@
-let userName = document.getElementById("floatingName")
-let userEmail = document.getElementById('floatingEmail')
-let userPass = document.getElementById('floatingPassword')
-let registerInputs = document.querySelector(".signup-form")
-let allInputs = document.querySelectorAll(".signup-form input")
-let btnSignup = document.querySelector(".btn-signup")
-let showPass = document.querySelector(".fa-eye")
-let hidePass = document.querySelector(".fa-eye-slash")
+let signUpForm = document.forms[0]
+let signupName = document.getElementById("signupName")
+let signupEmail = document.getElementById("signupEmail")
+let signupPassword = document.getElementById("signupPassword")
+let signupErrAlert = document.getElementById("form-error-alert")
+let signupSucAlert = document.getElementById("form-success-alert")
+let emailExistAlert = document.getElementById("email-exist-error")
 let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []
 
-let allRegx = [
-    /^[a-zA-Z]{3,20}[a-zA-Z 0-9]*$/,
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    /^[A-Z]+[a-zA-Z0-9!@#$%^&*()_+]*/
-]
-
-
-function checkInput(target) {
-    let targetSiblings = Array.from(target.parentElement.children);
-    let icons = targetSiblings.filter(function (el) {
-        return el.classList.contains('fa-check') || el.classList.contains('fa-circle-exclamation')
-    })
-    let valid = icons[1]
-    let inValid = icons[0]
-    let curAlert = target.nextElementSibling
-    target.classList.add("border-2")
-    let currentRegex;
-    if (target.id === "floatingName") {
-        currentRegex = allRegx[0]
-    } else if (target.id === "floatingEmail") {
-        currentRegex = allRegx[1]
-    } else if (target.id === "floatingPassword") {
-        currentRegex = allRegx[2]
-    }
-
-
-
-    if (!currentRegex.test(target.value.trim())) {
-        inValid.classList.remove('d-none')
-        valid.classList.add('d-none')
-        target.classList.add("border-danger")
-        curAlert.classList.remove('d-none')
-        target.classList.remove("border-success")
-
-
-
-    } else {
-        inValid.classList.add('d-none')
-        valid.classList.remove('d-none')
-        target.classList.add("border-success")
-        target.classList.remove("border-danger")
-        target.nextElementSibling.classList.add('d-none')
 
 
 
 
+function addUser() {
 
+    let user = {
+        name: signupName.value.trim(),
+        email: signupEmail.value.trim(),
+        password: signupPassword.value
 
     }
-
-
-
-}
-
-function validate() {
-    let isValid = true
-
-    if (!(userName.value && userEmail.value &&
-        userPass.value)) {
-        for (let i = 0; i < allInputs.length; i++) {
-            checkInput(allInputs[i])
-        }
-        
-        isValid = false
-        Swal.fire({
-            html: `<p class="text-capitalize">All <span class='fw-bold'>Inputs</span> are required to sign up and must be valid.</p>`,
-            icon: 'error',
-           
-        });
-       
-    } else {
-        for (let i = 0; i < allInputs.length; i++) {
-            if (!allRegx[i].test(allInputs[i].value.trim())) {
-                isValid = false;
-                Swal.fire({
-                    text: 'All Inputs are required to sign up and must be valid.',
-                    icon: 'error',
-                });
-                break
-            }
-        }
-
-        return isValid
-
-
-    }
-
-
-}
-
-
-function addUser(){
-   index = allUsers.findIndex(function(user) {
-    return user.email.trim() === userEmail.value.trim()
-   })
-   
-    if (index != -1) {
-        Swal.fire({
-            html: '<p class="text-capitalize">This <span class="fw-bold">email</span> is already in use.</p>',
-            icon: 'info',
-        });
-    }else {
-        const user = {
-            name: userName.value.trim(),
-            email: userEmail.value.trim(),
-            password: userPass.value.trim(),
-
-        }
-
+    if (checkAllInputs() && !isExist(user)) {
         allUsers.push(user)
         localStorage.setItem("allUsers", JSON.stringify(allUsers))
+        signupSucAlert.classList.replace("d-none", "d-block")
+        setTimeout(function () {
+            window.location.href = "./signin.html"
+        }, 1500)
+    } else {
+        signupSucAlert.classList.replace("d-block", "d-none")
 
-        // window.location.href = "./index.html"
-        Swal.fire({
-            html: '<p class="text-capitalize">successfully registered</p>',
-            icon: 'success',
-        });
     }
+
+
+
 }
 
 
 
-document.forms[0].addEventListener('submit', function (e) {
+
+
+
+signUpForm.addEventListener('submit', function (e) {
     e.preventDefault()
-})
-
-
-
-
-
-registerInputs.addEventListener('input', function (e) {
-
-    checkInput(e.target)
-
+    addUser()
 
 })
+signUpForm.addEventListener('input', function (e) {
+
+    if (e.target == signupName) {
+        validateInput(/^[a-zA-Z]{3,}$/, e.target)
+    } else if (e.target == signupEmail) {
+        validateInput(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, e.target)
+    } else if (e.target == signupPassword) {
+        validateInput(/^(?=.*[A-Z])(?=.*\d).{8,}$/, signupPassword)
+    }
 
 
-btnSignup.addEventListener('click', function () {
-    
-    if (validate()) {
-       addUser();
-       
+})
+
+function validateInput(regex, elem) {
+
+    let pattern = regex
+    if (pattern.test(elem.value)) {
+        elem.classList.add("is-valid")
+        elem.classList.remove("is-invalid")
+
+
+        return true
+
+    } else {
+        elem.classList.add("is-invalid")
+        elem.classList.remove("is-valid")
+
+        return false
 
     }
 
-})
+}
 
-showPass.addEventListener('click' , function(){
-        if (userPass.value) {
+function checkAllInputs() {
+    let nameValidation = validateInput(/^[a-zA-Z]{3,}$/, signupName)
+    let emailValidation = validateInput(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, signupEmail)
+    let passValidation = validateInput(/^(?=.*[A-Z])(?=.*\d).{8,}$/, signupPassword)
+    if (nameValidation && emailValidation && passValidation) {
+        signupErrAlert.classList.replace("d-block", "d-none")
 
-            userPass.setAttribute("type" , "text")
-            hidePass.classList.remove("d-none")
-            showPass.classList.add("d-none")
-        }
-    
+        return true
+    } else {
 
-        
-       
+        signupErrAlert.classList.replace("d-none", "d-block")
+        return false
+    }
 
-    
-})
+}
 
+function isExist(userObj) {
+    let index = allUsers.findIndex(function (user) {
+        return userObj.email == user.email
+    })
+    if (index != -1) {
+        emailExistAlert.classList.replace("d-none", "d-block")
+        console.log("exist");
 
-hidePass.addEventListener('click', function () {
+        return true
+    } else {
+        emailExistAlert.classList.replace("d-block", "d-none")
+        console.log("not exist");
 
-    userPass.setAttribute("type", "password")
-    hidePass.classList.add("d-none")
-    showPass.classList.remove("d-none")
-   
+    }
+    return false
 
+}
+let flag = false
+showPass.addEventListener('click',function(){
+    if (flag == false) {
+        signupPassword.type = "text";
+        showPass.classList.replace("fa-eye", "fa-eye-slash");
+        flag=true
 
-
-
-
+    }else {
+        signupPassword.type = "password";
+        showPass.classList.replace("fa-eye-slash","fa-eye");
+        flag = false
+    }
 })

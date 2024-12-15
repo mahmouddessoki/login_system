@@ -47,6 +47,7 @@ h1.home , .brand a , #exampleModalLabel {
 }
 .fa-check , .fa-circle-exclamation , .fa-eye , .fa-eye-slash {
     top: 25px !important;
+    margin-right: 2rem !important;
 }
 .modal-body i {
     top: 20px !important;

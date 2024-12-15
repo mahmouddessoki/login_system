@@ -1,23 +1,14 @@
-if (localStorage.getItem("loggedInUser") == null) {
+let homeDemo = document.getElementById("home-welcome")
+let logoutBtn = document.getElementById("logout")
+let loggedName = localStorage.getItem("LoggedName") || null
+if (loggedName) {
+    homeDemo.innerHTML = `Welcome, ${loggedName}`
+} else {
     window.location.href = "./signin.html"
 }
-let homeWelcome = document.getElementById("home-welcome")
-let logOutBtn = document.querySelector(".logout-btn button")
 
-let allUsers = JSON.parse(localStorage.getItem("allUsers")) || []
+logoutBtn.addEventListener('click',function(){
+    localStorage.removeItem("LoggedName")
+    window.location.href = "./signin.html"
 
-
-let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
-
-homeWelcome.innerHTML = `Welcome ${loggedInUser.name}`
-
-logOutBtn.addEventListener('click', function () {
-    logOut()
 })
-
-
-function logOut() {
-    localStorage.removeItem("loggedInUser")
-    window.location.href = "./signin.html"
-
-}

@@ -29,29 +29,14 @@
                 <div class="login-form">
                     <form action="" method="post">
                         <div class="form-floating mb-4 position-relative">
-                            <input type="text" class="form-control" id="floatingEmail" placeholder="name@example.com">
-                            <div class="alert name-alert alert-danger p-2 fs-6 d-none text-capitalize">
-                                your name is required and must be 3-20 characters long
-                            </div>
-                            <i
-                                class="fa-solid fa-lg end-0  text-danger position-absolute me-2 d-none fa-circle-exclamation"></i>
-                            <i class="fa-solid fa-lg end-0  text-success position-absolute me-2 d-none fa-check"></i>
+                            <input type="text" class="form-control" id="signinEmail" placeholder="name@example.com">
+                           
 
-                            <label for="floatingInput">Email address</label>
+                            <label for="signinEmail">Email address</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <div class="alert  alert-danger p-2 fs-6 d-none text-capitalize">
-                                your password is required and must start with capital letter and contain at least 8
-                                characters
-                            </div>
-                            <i
-                                class="fa-solid fa-lg end-0  text-danger position-absolute me-2 d-none fa-circle-exclamation"></i>
-                            <i class="fa-solid fa-lg end-0  text-success position-absolute me-2 d-none fa-check"></i>
-                            <!-- <i class="fa-solid fa-eye fa-lg position-absolute end-0 me-2 "></i> -->
-                            <!-- <i class="fa-solid d-none fa-eye-slash  fa-lg position-absolute end-0 me-2"></i> -->
-
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" class="form-control" id="signinPassword" placeholder="Password">
+                            <label for="signinPassword">Password</label>
                         </div>
                         <div class="d-flex mt-3 justify-content-between align-items-center">
                             <div class="rem-input d-flex column-gap-2 justify-content-end align-items-center">
@@ -61,6 +46,9 @@
                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                 class="text-capitalize changePass text-decoration-none text-dark">change password</a>
                         </div>
+                        <p class="alert alert-danger d-none text-center" id="login-error-alert" >In correct email or password</p>
+                        <p class="alert alert-success d-none text-center" id="login-success-alert" >Login Success</p>
+
 
                         <button class="btn btn-login btn-outline-light d-block w-100 mt-4 text-uppercase">login</button>
                     </form>
@@ -77,83 +65,57 @@
 
 
 
-
+    <!-- change password modal -->
+    
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-capitalize" id="exampleModalLabel">password change</h1>
-                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="mb-3 position-relative">
-                            <input placeholder="Enter email " type="text" class="form-control" id="user-email">
-                            <div class="alert  alert-danger p-2 fs-6 d-none text-capitalize">
-                                email is required and must be valid
-                            </div>
-                            <i
-                                class="fa-solid fa-sm end-0  text-danger position-absolute me-2 d-none fa-circle-exclamation"></i>
-                            <i class="fa-solid fa-sm end-0  text-success position-absolute me-2 d-none fa-check"></i>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="changePassEmail" placeholder="Email...">
                         </div>
-                        <div class="mb-3 position-relative">
-
-                            <input type="password" class="form-control " id="old-password"
-                                placeholder="Enter old password"></input>
-                            <div class="alert  alert-danger p-2 fs-6 d-none text-capitalize">
-                                old password is required and must start with capital letter and contain at least 8
-                                characters
-                            </div>
-                            <i
-                                class="fa-solid fa-sm end-0 last  text-danger position-absolute d-none fa-circle-exclamation"></i>
-                            <i class="fa-solid fa-sm end-0 last  text-success position-absolute  d-none fa-check"></i>
-                            <i class="fa-solid fa-eye  fa-lg position-absolute end-0 me-2 "></i>
-                            <i class="fa-solid d-none  fa-eye-slash  fa-lg position-absolute end-0 me-2"></i>
-
+                        <div class="mb-3">
+                        <input type="password" class="form-control" id="changePassOldPass" placeholder="Old Password...">
                         </div>
-                        <div class="mb-3 position-relative">
-                            <input placeholder="Enter new password" type="password" class="form-control "
-                                id="new-password"></input>
-                            <div class="alert  alert-danger p-2 fs-6 d-none text-capitalize">
-                                new password is required and must start with capital letter and contain at least 8
-                                characters
-                            </div>
-                            <i
-                                class="fa-solid fa-sm end-0 last  text-danger position-absolute d-none fa-circle-exclamation"></i>
-                            <i class="fa-solid fa-sm end-0 last text-success position-absolute d-none fa-check"></i>
-                            <i class="fa-solid fa-eye  fa-lg position-absolute end-0 me-2 "></i>
-                            <i class="fa-solid d-none  fa-eye-slash  fa-lg position-absolute end-0 me-2"></i>
-
-
+                        <div class="mb-3">
+                        <input type="password" class="form-control" id="changePassNewPass" placeholder="New Password...">
+                        <div class="alert alert-danger invalid-feedback">
+                            Password must contain at least 8 characters, one uppercase letter, one lowercase letter
+                        </div>
+                        <div class="alert alert-danger mt-4 text-center d-none" id="changePassErrorAlert">
                             
                         </div>
+                       
+                        <div class="alert alert-success mt-4 d-none text-center" id="changePassSucAlert">
+                            password changed successfully
+                        </div>
+
+                        </div>
                     </form>
-                    <div class="alert text-center d-none text-capitalize alert-danger">
-                        all inputs are required to change password
-                    </div>
-                    <div class="alert text-center d-none text-capitalize alert-success">
-                        your password has been changed successfully
-                    </div>
-                    <div class="alert text-center d-none text-capitalize alert-danger">
-                        not correct email or password
-                    </div>
-                    <div class="alert text-center d-none text-capitalize alert-danger">
-                        Invalid Inputs
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" id="change" class="btn  btn-info text-white">Change</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Back to login</button>
+                    <button type="button" id="changePass" class="btn btn-outline-primary">Change Password</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/signin.js"></script>
-    <script src="./js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./js/signin.js"></script>
+        <script src="./js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
